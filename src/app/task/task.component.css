@@ -1,0 +1,30 @@
+.bg-light {
+    background-color: #f8f9fa !important; /* Màu nền nhạt */
+}
+
+.text-center {
+    color: #333; /* Màu chữ dễ nhìn */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Màu nền của nút */
+    border-color: #007bff; /* Màu viền của nút */
+}
+
+.my-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.mx-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}
+
+.p-4 {
+    padding: 1.5rem !important;
+}
+
+.rounded {
+    border-radius: 0.25rem !important;
+}
