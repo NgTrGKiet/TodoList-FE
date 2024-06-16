@@ -50,14 +50,14 @@ export class TaskFormComponent {
         UserTask.id = id;
         this.taskService.updateTask(id, UserTask).subscribe(() => {
           console.log('Upload Reservation');
-          this.router.navigate(['/list']);
+          this.router.navigate(['/task/list']);
         }, (error) => {
           window.alert('Error creating task: ' + error);
         })
       } else {
         this.taskService.createTask(UserTask).subscribe(() => {
           console.log('Task created successfully');
-          this.router.navigate(['/list']);
+          this.router.navigate(['/task/list']);
         }, (error) => {
           window.alert('Error creating task: ' + error);
         })

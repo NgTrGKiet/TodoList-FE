@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { TaskComponent } from '../task.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserTask } from '../../models/UserTask';
@@ -10,7 +10,7 @@ import { TaskService } from '../../service/task.service';
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule, TaskComponent],
+  imports: [FormsModule, CommonModule, RouterModule, TaskComponent, RouterOutlet],
   providers: [HttpClientModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
