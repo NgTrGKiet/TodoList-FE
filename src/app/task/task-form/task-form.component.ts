@@ -44,27 +44,33 @@ export class TaskFormComponent {
     }
   }
 
+  private handleTaskOperation(task: UserTask, id: number): void {
+    const operation = this.isEditMode
+      ? this.taskService.updateTask(id, task)
+      : this.taskService.createTask(task);
+
+    operation.subscribe(
+      () => {
+        const message = this.isEditMode ? 'Task updated successfully' : 'Task created successfully';
+        console.log(message);
+        this.router.navigate(['/task/list']);
+      },
+      error => {
+        const errorMessage = this.isEditMode ? 'Error updating task' : 'Error creating task';
+        window.alert(`${errorMessage}: ${error}`);
+      }
+    );
+  }
+
   onSubmit() {
     if (this.taskForm.valid) {
       if (window.confirm("Are you sure you want to proceed?")) {
         let UserTask: UserTask = this.taskForm.value;
-        const id = this.route.snapshot.params['id'];
+        let id = this.route.snapshot.params['id'];
         if (id) {
           UserTask.id = id;
-          this.taskService.updateTask(id, UserTask).subscribe(() => {
-            console.log('Upload Reservation');
-            this.router.navigate(['/task/list']);
-          }, (error) => {
-            window.alert('Error creating task: ' + error);
-          })
-        } else {
-          this.taskService.createTask(UserTask).subscribe(() => {
-            console.log('Task created successfully');
-            this.router.navigate(['/task/list']);
-          }, (error) => {
-            window.alert('Error creating task: ' + error);
-          })
         }
+        this.handleTaskOperation(UserTask, id)
       }
     }
   }
