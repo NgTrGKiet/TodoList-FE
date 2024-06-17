@@ -15,7 +15,7 @@ export const routes: Routes = [
         path: 'task', canActivate: [AuthGuard], component: TaskComponent, children: [
             { path: 'list', component: TaskListComponent },
             { path: 'new', component: TaskFormComponent },
-            { path: 'edit/:id', component: TaskFormComponent }
+            { path: ':id', component: TaskFormComponent }
         ]
     },
     { path: '**', redirectTo: '' }

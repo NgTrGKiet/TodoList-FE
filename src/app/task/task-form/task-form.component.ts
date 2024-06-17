@@ -17,6 +17,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 })
 export class TaskFormComponent {
   taskForm: FormGroup = new FormGroup({});
+  isEditMode: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService, private toast: ToastrService) { }
 
@@ -33,6 +34,7 @@ export class TaskFormComponent {
     let id = this.route.snapshot.params['id'];
     if (id) {
       id = +id;
+      this.isEditMode = true;
       this.taskService.getTask(id).subscribe((response: APIResponse) => {
         if (response) {
           console.log(response);
@@ -44,23 +46,25 @@ export class TaskFormComponent {
 
   onSubmit() {
     if (this.taskForm.valid) {
-      let UserTask: UserTask = this.taskForm.value;
-      const id = this.route.snapshot.params['id'];
-      if (id) {
-        UserTask.id = id;
-        this.taskService.updateTask(id, UserTask).subscribe(() => {
-          console.log('Upload Reservation');
-          this.router.navigate(['/task/list']);
-        }, (error) => {
-          window.alert('Error creating task: ' + error);
-        })
-      } else {
-        this.taskService.createTask(UserTask).subscribe(() => {
-          console.log('Task created successfully');
-          this.router.navigate(['/task/list']);
-        }, (error) => {
-          window.alert('Error creating task: ' + error);
-        })
+      if (window.confirm("Are you sure you want to proceed?")) {
+        let UserTask: UserTask = this.taskForm.value;
+        const id = this.route.snapshot.params['id'];
+        if (id) {
+          UserTask.id = id;
+          this.taskService.updateTask(id, UserTask).subscribe(() => {
+            console.log('Upload Reservation');
+            this.router.navigate(['/task/list']);
+          }, (error) => {
+            window.alert('Error creating task: ' + error);
+          })
+        } else {
+          this.taskService.createTask(UserTask).subscribe(() => {
+            console.log('Task created successfully');
+            this.router.navigate(['/task/list']);
+          }, (error) => {
+            window.alert('Error creating task: ' + error);
+          })
+        }
       }
     }
   }

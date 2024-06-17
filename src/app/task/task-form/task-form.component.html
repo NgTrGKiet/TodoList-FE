@@ -1,4 +1,4 @@
-<h3 class="mt-5 mb-3 text-center fw-bold">Add new task</h3>
+<h3 class="mt-5 mb-3 text-center fw-bold">{{ isEditMode ? 'Details of task' : 'Add new task' }}</h3>
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
 
     <div class="d-flex justify-content-center mb-3">
@@ -63,6 +63,8 @@
     </div>
 
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary w-50" [disabled]="taskForm.invalid" type="submit">Submit</button>
+        <button class="btn btn-primary w-50" [disabled]="taskForm.invalid" type="submit">{{ isEditMode ? 'Update' :
+            'Submit'
+            }}</button>
     </div>
 </form>
