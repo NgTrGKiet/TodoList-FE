@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { User } from "../models/User";
-import { Observable, tap } from "rxjs";
+import { catchError, map, Observable, tap, throwError } from "rxjs";
 import { APIResponse } from "../models/APIResponse";
 
 @Injectable({ providedIn: 'root' })
@@ -15,6 +15,17 @@ export class AuthService {
             tap(response => {
                 localStorage.setItem('token', response.result.accessToken)
                 console.log(response.result.accessToken)
+            })
+        )
+    }
+
+    Register(user: User): Observable<APIResponse> {
+        return this.http.post<APIResponse>(this.apiUrl + '/register', user).pipe(
+            map((response: APIResponse) => {
+                return response;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                return throwError(error.error.errorMessages);
             })
         )
     }

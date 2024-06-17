@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { TaskComponent } from '../task/task.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +12,7 @@ import { User } from '../models/User';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule, TaskComponent, MatCardModule, MatButtonModule, MatInputModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, TaskComponent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
