@@ -1,37 +1,22 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th class="text-center" scope="col">Title</th>
-            <th class="text-center" scope="col">Status</th>
-            <th class="text-center" scope="col">Priority</th>
-            <th class="text-center" scope="col">Start</th>
-            <th class="text-center" scope="col">End</th>
-        </tr>
-    </thead>
-    <tbody *ngIf="UserTask.length; else Nth">
-        <tr *ngFor="let item of UserTask">
-            <td class="text-center">
-                {{ item.title }}
-            </td>
-            <td class="text-center">
-                {{ item.status }}
-            </td>
-            <td class="text-center">
-                {{ item.priority }}
-            </td>
-            <td class="text-center">
-                {{ item.start }}
-            </td>
-            <td class="text-center">
-                {{ item.end }}
-            </td>
-            <td class="d-flex justify-content-center">
-                <button class="btn btn-primary mx-2" (click)="deleteReservation(item.id)">Delete</button>
-                <button class=" btn btn-primary mx-2" [routerLink]="['/task/edit', item.id]">Update</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="task-container">
+    <ng-container *ngIf="UserTask.length; else Nth">
+        <div class="task-card" *ngFor="let item of UserTask">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text"><strong>Status:</strong> {{ item.status }}</p>
+                    <p class="card-text"><strong>Priority:</strong> {{ item.priority }}</p>
+                    <p class="card-text"><strong>Start:</strong> {{ item.start }}</p>
+                    <p class="card-text"><strong>End:</strong> {{ item.end }}</p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-danger" (click)="deleteReservation(item.id)">Delete</button>
+                        <button class="btn btn-primary" [routerLink]="['/task/edit', item.id]">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
 <ng-template #Nth>
     <p>No reservation available.</p>
 </ng-template>
