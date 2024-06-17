@@ -15,6 +15,9 @@ export class AuthService {
             tap(response => {
                 localStorage.setItem('token', response.result.accessToken)
                 console.log(response.result.accessToken)
+            }),
+            catchError((error: HttpErrorResponse) => {
+                return throwError(error.error.errorMessages)
             })
         )
     }

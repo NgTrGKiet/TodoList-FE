@@ -28,17 +28,19 @@ export class TaskListComponent {
     this.taskService.getTasks().subscribe((response) => {
       this.UserTask = response.result;
     }, (error) => {
-      console.error('Error fetching tasks:', error);
+      window.alert('Error fetching tasks: ' + error);
     });
   }
 
-  deleteReservation(id: number): void {
-    id = +id;
-    this.taskService.deleteTask(id).subscribe((reservation) => {
-      console.log('Delete request got processed');
-      this.loadTasks()
-    }, (error) => {
-      console.error('Error deleting task:', error);
-    })
+  deleteTask(id: number): void {
+    if (window.confirm('Are you sure you want to delete this task?')) {
+      id = +id;
+      this.taskService.deleteTask(id).subscribe((data) => {
+        console.log('Delete request got processed');
+        this.loadTasks()
+      }, (error) => {
+        window.alert('Error deleting task: ' + error);
+      })
+    }
   }
 }

@@ -6,7 +6,7 @@
             <label class="form-label fw-bold">Title:</label>
             <input class="form-control" type="text" [formControlName]="'title'">
             <span *ngIf="!taskForm.get('title')?.valid && taskForm.get('title')?.touched" class="help-block">
-                Please enter a title
+                * Please enter a title
             </span>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <label class="form-label fw-bold">Content:</label>
             <textarea class="form-control" rows="5" [formControlName]="'content'"></textarea>
             <span *ngIf="!taskForm.get('content')?.valid && taskForm.get('content')?.touched" class="help-block">
-                Please enter content
+                * Please enter content
             </span>
         </div>
     </div>
@@ -25,14 +25,14 @@
             <label class="form-label fw-bold">Start:</label>
             <input class="form-control" type="date" [formControlName]="'start'">
             <span *ngIf="!taskForm.get('start')?.valid && taskForm.get('start')?.touched" class="help-block">
-                Please choose a date
+                * Please choose a date
             </span>
         </div>
         <div class="col-md-3 mb-3">
             <label class="form-label fw-bold">End:</label>
             <input class="form-control" type="date" [formControlName]="'end'">
             <span *ngIf="!taskForm.get('end')?.valid && taskForm.get('end')?.touched" class="help-block">
-                Please choose a date
+                * Please choose a date
             </span>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 <option value="Low">Low</option>
             </select>
             <span *ngIf="!taskForm.get('priority')?.valid && taskForm.get('priority')?.touched" class="help-block">
-                Please select a priority
+                * Please select a priority
             </span>
         </div>
         <div class="col-md-3 mb-3">
@@ -57,7 +57,7 @@
                 <option value="Done">Done</option>
             </select>
             <span *ngIf="!taskForm.get('status')?.valid && taskForm.get('status')?.touched" class="help-block">
-                Please select a status
+                * Please select a status
             </span>
         </div>
     </div>

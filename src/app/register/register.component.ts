@@ -37,7 +37,7 @@ export class RegisterComponent {
       this.router.navigate(['']);
     },
       error => {
-        console.error('Login failed', error);
+        window.alert('Login failed: ' + error);
       })
   }
 }

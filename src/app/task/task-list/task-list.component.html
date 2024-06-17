@@ -9,8 +9,8 @@
                     <p class="card-text"><strong>Start:</strong> {{ item.start }}</p>
                     <p class="card-text"><strong>End:</strong> {{ item.end }}</p>
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-danger" (click)="deleteReservation(item.id)">Delete</button>
-                        <button class="btn btn-primary" [routerLink]="['/task/edit', item.id]">Update</button>
+                        <button class="btn btn-danger" (click)="deleteTask(item.id)">Delete</button>
+                        <button class="btn btn-primary" [routerLink]="['/task/edit', item.id]">Detail</button>
                     </div>
                 </div>
             </div>

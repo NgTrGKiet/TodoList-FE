@@ -1,12 +1,15 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { UserTask } from "../models/UserTask";
-import { Observable, catchError, map, throwError } from "rxjs";
+import { BehaviorSubject, Observable, catchError, map, throwError } from "rxjs";
 import { APIResponse } from "../models/APIResponse";
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
     private apiUrl = 'https://localhost:7137/api/usertask'
+
+    // private tasksSubject = new BehaviorSubject<UserTask[]>([]);
+    // tasks$ = this.tasksSubject.asObservable();
 
     constructor(private http: HttpClient) { }
 
@@ -26,6 +29,17 @@ export class TaskService {
             })
         )
     }
+
+    // loadTasks(): void {
+    //     this.getTasks().subscribe(
+    //         tasks => this.tasksSubject.next(tasks),
+    //         error => console.error('Error loading tasks', error)
+    //     );
+    // }
+
+    // refreshTasks(): void {
+    //     this.loadTasks();
+    // }
 
     getTask(id: number): Observable<APIResponse> {
         return this.http.get<APIResponse>(this.apiUrl + '/single-task/' + id).pipe(

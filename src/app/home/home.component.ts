@@ -38,7 +38,7 @@ export class HomeComponent {
       this.router.navigate(['/task']);
     },
       error => {
-        console.error('Login failed', error);
+        window.alert('Login failed: ' + error);
       })
   }
 }
