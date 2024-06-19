@@ -17,6 +17,11 @@ import { TaskService } from '../../service/task.service';
 })
 export class TaskListComponent {
   UserTask: UserTask[] = [];
+  filteredTasks: UserTask[] = [];
+
+  searchTitle: string = '';
+  searchStatus: string = '';
+  searchPriority: string = '';
 
   constructor(private taskService: TaskService, private router: Router, private route: ActivatedRoute) { }
 
@@ -24,9 +29,23 @@ export class TaskListComponent {
     this.loadTasks();
   }
 
+  applyFilter(): void {
+    if (!this.searchTitle && !this.searchStatus && !this.searchPriority) {
+      this.filteredTasks = this.UserTask; // Nếu không có điều kiện tìm kiếm nào, hiển thị tất cả
+    } else {
+      this.filteredTasks = this.UserTask.filter(task => {
+        const matchesTitle = this.searchTitle ? task.title.toLowerCase().includes(this.searchTitle.toLowerCase()) : true;
+        const matchesStatus = this.searchStatus ? task.status === this.searchStatus : true;
+        const matchesPriority = this.searchPriority ? task.priority === this.searchPriority : true;
+        return matchesTitle && matchesStatus && matchesPriority;
+      });
+    }
+  }
+
   loadTasks() {
     this.taskService.getTasks().subscribe((response) => {
       this.UserTask = response.result;
+      this.filteredTasks = response.result
     }, (error) => {
       window.alert('Error fetching tasks: ' + error);
     });

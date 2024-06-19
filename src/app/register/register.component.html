@@ -6,7 +6,7 @@
                 <label for="name">Name</label>
                 <input type="text" id="name" formControlName="Name" class="form-control" />
                 <div *ngIf="registerForm.get('Name')?.invalid && registerForm.get('Name')?.touched" class="error">
-                    Name is required
+                    * Name is required
                 </div>
             </div>
             <div class="form-group">
@@ -14,7 +14,7 @@
                 <input type="text" id="username" formControlName="UserName" class="form-control" />
                 <div *ngIf="registerForm.get('UserName')?.invalid && registerForm.get('UserName')?.touched"
                     class="error">
-                    Username is required
+                    * Username is required
                 </div>
             </div>
             <div class="form-group">
